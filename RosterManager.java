@@ -1,6 +1,7 @@
 import java.util.Scanner;
 public class RosterManager {
     public void run() {
+        Roster roster = new Roster();
         System.out.println("Roster Manager running...");
         Scanner stringScanner = new Scanner(System.in);
         String command = stringScanner.next();

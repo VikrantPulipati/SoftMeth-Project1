@@ -8,6 +8,6 @@ public class Date implements Comparable<Date> {
     public boolean isValid() {
         return true;
     } // check if a date is a valid calendar date
-    @Override
-    public int compareTo(Date date) {}
+
+    public int compareTo(Date date) { return 0; }
 }

@@ -5,20 +5,20 @@ public class RosterManager {
         System.out.println("Roster Manager running...");
         Scanner stringScanner = new Scanner(System.in);
         String command = stringScanner.next();
-        while (command.equals("Q") != true) {
-            if (command.equals("A") == true) {
+        while (!command.equals("Q")) {
+            if (command.equals("A")) {
 
-            } else if (command.equals("R") == true) {
+            } else if (command.equals("R")) {
 
-            } else if (command.equals("P") == true) {
+            } else if (command.equals("P")) {
 
-            } else if (command.equals("PS") == true) {
+            } else if (command.equals("PS")) {
 
-            } else if (command.equals("PC") == true) {
+            } else if (command.equals("PC")) {
 
-            } else if (command.equals("L") == true) {
+            } else if (command.equals("L")) {
 
-            } else if (command.equals("C") == true) {
+            } else if (command.equals("C")) {
 
             } else {
                 System.out.println("You fucked up");

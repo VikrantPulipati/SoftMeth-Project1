@@ -5,14 +5,10 @@ public class Student implements Comparable<Student> {
 
     @Override
     public int compareTo(Student student) {
-
+        return 0;
     }
     @Override
     public String toString() {
-
-    }
-    @Override
-    public int equals(Student student) {
-
+        return null;
     }
 }

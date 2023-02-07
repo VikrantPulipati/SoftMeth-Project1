@@ -4,10 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f0d23b5e-8f81-454c-9ade-2cf1d2af8e94" name="Changes" comment="">
+    <list default="true" id="f0d23b5e-8f81-454c-9ade-2cf1d2af8e94" name="Changes" comment="Fixed file directory structure and simplified some logic">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RosterManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/RosterManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/Student.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Date.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Date.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Major.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Major.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Profile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Project1.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Roster.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Roster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Roster.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RosterManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RosterManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RosterManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RunProject1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RunProject1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RunProject1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Student.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,13 +39,16 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/Users/gaberuszala/Desktop/Code/SoftwareMethodology",
-    "settings.editor.selected.configurable": "vcs.Git"
+    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Vikrant Pulipati\Desktop\SoftMeth Projects\Project1\src" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -61,5 +73,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Fixed file directory structure and simplified some logic" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed file directory structure and simplified some logic" />
   </component>
 </project>

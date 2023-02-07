@@ -4,14 +4,10 @@ public class Profile implements Comparable<Profile> {
     private Date dob; // use the Date class described in (f)
     @Override
     public int compareTo(Profile profile) {
-
+        return 0;
     }
     @Override
     public String toString() {
-
-    }
-    @Override
-    public int equals(Profile profile) {
-
+        return null;
     }
 }

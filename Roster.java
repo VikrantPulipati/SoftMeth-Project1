@@ -1,12 +1,19 @@
 public class Roster {
     private Student[] roster;
     private int size;
+    public int getSize() {
+        return this.size;
+    }
+    public void setSize(int size) {
+        this.size = size;
+    }
     private int find(Student student) {
         return 1;
-    } // saerch the given student in roster
+    } // search the given student in roster
     private void grow() {} // increase the array capacity by 4
     public boolean add(Student student) {
-        return true;
+        roster[size-1] = student;
+        size++;
     } // add student to end of array
     public boolean remove(Student student) {
         return true;

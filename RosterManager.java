@@ -1,5 +1,20 @@
 import java.util.Scanner;
 public class RosterManager {
+    public void add(Roster roster, Scanner stringScanner) {
+        Profile newProfile = new Profile();
+        Student newStudent = new Student();
+
+        newProfile.setFname(stringScanner.next());
+        newProfile.setLname(stringScanner.next());
+
+        newStudent.setProfile(newProfile);
+        Date newDate = new Date(stringScanner.next());
+        newStudent.setDOB(newDate);
+        newStudent.setMajor(stringScanner.next());
+        // set credits with Date class
+
+        roster.add(newStudent);
+    }
     public void run() {
         Roster roster = new Roster();
         System.out.println("Roster Manager running...");
@@ -7,7 +22,7 @@ public class RosterManager {
         String command = stringScanner.next();
         while (command.equals("Q") != true) {
             if (command.equals("A") == true) {
-
+                add(roster, stringScanner);
             } else if (command.equals("R") == true) {
 
             } else if (command.equals("P") == true) {

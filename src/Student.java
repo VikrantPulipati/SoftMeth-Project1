@@ -15,7 +15,8 @@ public class Student implements Comparable<Student> {
     public void setProfile(Profile profile) {
         this.profile = profile;
     }
-    public void setMajor(Major major) {
+    public void setMajor(String majorString) {
+        Major major = new Major majorString();
         this.major = major;
     }
     public void setCredits(int creditsCompleted) {

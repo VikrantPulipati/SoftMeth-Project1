@@ -9,7 +9,7 @@ public class RosterManager {
 
         newStudent.setProfile(newProfile);
         Date newDate = new Date(stringScanner.next());
-        newStudent.setDOB(newDate);
+        //newStudent.setDOB(newDate);
         newStudent.setMajor(stringScanner.next());
         // set credits with Date class
 

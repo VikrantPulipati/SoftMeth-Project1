@@ -14,6 +14,7 @@ public class Roster {
     public boolean add(Student student) {
         roster[size-1] = student;
         size++;
+        return true;
     } // add student to end of array
     public boolean remove(Student student) {
         return true;

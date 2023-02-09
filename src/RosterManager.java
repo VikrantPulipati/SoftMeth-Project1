@@ -4,15 +4,18 @@ public class RosterManager {
         Profile newProfile = new Profile();
         Student newStudent = new Student();
 
+        // SET F,L NAME
         newProfile.setFname(stringScanner.next());
         newProfile.setLname(stringScanner.next());
-
-        newStudent.setProfile(newProfile);
+        // SET DOB
         Date newDate = new Date(stringScanner.next());
-        //newStudent.setDOB(newDate);
+        newProfile.setDOB(newDate);
+        // SET MAJOR
         newStudent.setMajor(stringScanner.next());
-        // set credits with Date class
-
+        // SET CREDITS
+        newStudent.setCredits(Integer.parseInt(stringScanner.next()));
+        // SET PROFILE
+        newStudent.setProfile(newProfile);
         roster.add(newStudent);
     }
     public void run() {
@@ -23,11 +26,14 @@ public class RosterManager {
 
         while (command.equals("Q") != true) {
             if (command.equals("A") == true) {
+                // Error conditions:
+
+                // add method:
                 add(roster, stringScanner);
             } else if (command.equals("R") == true) {
 
             } else if (command.equals("P")) {
-
+                roster.print();
             } else if (command.equals("PS")) {
 
             } else if (command.equals("PC")) {
@@ -36,9 +42,6 @@ public class RosterManager {
 
             } else if (command.equals("C")) {
 
-            } else {
-                System.out.println("You fucked up");
-                break;
             }
             command = stringScanner.next();
         }

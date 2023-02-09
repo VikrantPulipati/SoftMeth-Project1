@@ -22,6 +22,7 @@ public class RosterManager {
         Date newDate = new Date(stringScanner.next());
         newProfile.setDOB(newDate);
         // SET MAJOR
+        // put these few lines of code in the inValid() method
         int success = newStudent.setMajor(stringScanner.next());
         if (success != 1) {
             return;

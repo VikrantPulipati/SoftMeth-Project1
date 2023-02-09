@@ -15,28 +15,18 @@ public class Student implements Comparable<Student> {
     public void setProfile(Profile profile) {
         this.profile = profile;
     }
-    public int setMajor(String majorString) { // I don't think I wrote this method the way they want me to. I just didn't know how else to do it.
-        if (majorString.equals("CS")) {
-            major = Major.CS;
-            return 1;
-        } else if (majorString.equals("MATH")) {
-            major = Major.MATH;
-            return 1;
-        } else if (majorString.equals("EE")) {
-            major = Major.EE;
-            return 1;
-        } else if (majorString.equals("ITI")) {
-            major = Major.ITI;
-            return 1;
-        } else if (majorString.equals("BAIT")) {
-            major = Major.BAIT;
-            return 1;
-        } else {
+    public void setMajor(String majorString) {
+        Major newMajor = Major.getMajorFromString(majorString);
+        if (newMajor == null) {
             System.out.println("Major code invalid: " + majorString);
-            return 0;
+        } else {
+            this.major = newMajor;
         }
     }
     public void setCredits(int creditsCompleted) {
+        if (creditsCompleted < 0) {
+            System.out.println("Credits completed invalid: cannot be negative!");
+        }
         this.creditsCompleted = creditsCompleted;
     }
     @Override

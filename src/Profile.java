@@ -51,7 +51,7 @@ public class Profile implements Comparable<Profile> {
     }
     @Override
     public String toString() {
-        return "fuck u";
+        return fname + " " + lname + " " + dob.toString();
     }
     public int equals(Profile profile) {
         return 0;

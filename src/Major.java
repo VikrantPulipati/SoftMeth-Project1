@@ -1,9 +1,9 @@
 public enum Major {
+    BAIT("BAIT"),
     CS("CS"),
     MATH("MATH"),
-    EE("EE"),
     ITI("ITI"),
-    BAIT("BAIT");
+    EE("EE");
 
     private String majorName;
 

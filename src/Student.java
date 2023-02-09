@@ -12,6 +12,19 @@ public class Student implements Comparable<Student> {
     public int getCredits() {
         return this.creditsCompleted;
     }
+    public String getStanding() {
+        String standingString = "";
+        if (creditsCompleted < 30) {
+            standingString = "(Freshman)";
+        } else if (creditsCompleted < 60) {
+            standingString = "(Sophomore)";
+        } else if (creditsCompleted < 90) {
+            standingString = "(Junior)";
+        } else {
+            standingString = "(Senior)";
+        }
+        return standingString;
+    }
     public void setProfile(Profile profile) {
         this.profile = profile;
     }
@@ -45,7 +58,30 @@ public class Student implements Comparable<Student> {
     }
     @Override
     public String toString() {
-        return "fuck u";
+        String majorString = "";
+        String standingString = "";
+        if (major.getMajorName().equals("CS")) {
+            majorString = "(01:198 CS SAS)";
+        } else if (major.getMajorName().equals("MATH")) {
+            majorString = "(01:640 MATH SAS)";
+        } else if (major.getMajorName().equals("EE")) {
+            majorString = "(14:332 EE SOE)";
+        } else if (major.getMajorName().equals("ITI")) {
+            majorString = "(04:547 ITI SC&I)";
+        } else if (major.getMajorName().equals("BAIT")) {
+            majorString = "(33:136 BAIT RBS)";
+        }
+
+        if (creditsCompleted < 30) {
+            standingString = "(Freshman)";
+        } else if (creditsCompleted < 60) {
+            standingString = "(Sophomore)";
+        } else if (creditsCompleted < 90) {
+            standingString = "(Junior)";
+        } else {
+            standingString = "(Senior)";
+        }
+        return profile.toString() + " " + majorString + " credits completed: " + creditsCompleted + " " + standingString;
     }
 
     public int equals(Student student) {

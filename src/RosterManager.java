@@ -81,7 +81,7 @@ public class RosterManager {
         newStudent.setProfile(newProfile);
         // CHECK IF INPUT IS VALID
         if(validInput(roster, newStudent, newProfile, newDate)) {
-            roster.add(newStudent);
+            roster.add(newStudent); 
         }
     }
     public void changeMajor(Roster roster, String[] inputs) {
@@ -138,6 +138,9 @@ public class RosterManager {
                     System.out.println(students[i]);
                 }
             }
+        }
+        else {
+            System.out.println("School doesn't exist: " + inputs[1]);
         }
     }
     public void run() {

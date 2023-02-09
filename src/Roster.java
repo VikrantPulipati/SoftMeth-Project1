@@ -1,5 +1,5 @@
 public class Roster {
-    private Student[] roster = new Student[10];
+    private Student[] roster = new Student[4];
     private int size = 0;
 
     public int getSize() {
@@ -21,11 +21,19 @@ public class Roster {
         return -1;
     } // search the given student in roster
     private void grow() { // do we have to copy the old array into a new one that's 4 cells bigger? Kind of inefficient though.
+        Student[] newRoster = new Student[roster.length + 4];
+        for (int i = 0; i < roster.length; i++) {
+            newRoster[i] = roster[i];
+        }
+        roster = newRoster;
 
     } // increase the array capacity by 4
     public boolean add(Student student) {
         roster[size] = student;
         size++;
+        if (size == roster.length) {
+            grow();
+        }
         return true;
     } // add student to end of array
     public boolean remove(Student student) {
@@ -56,17 +64,18 @@ public class Roster {
         }
     }
     public void print() {
+        sortByProfile();
         // sorts by profile
-        for (int i = 0; i < size; i++) {
-            for (int j = i; j > 0; j--) {
-                if (roster[j].compareTo(roster[j-1]) < 0) {
-                    Student temp = new Student();
-                    temp = roster[j-1];
-                    roster[j-1] = roster[j];
-                    roster[j] = temp;
-                }
-            }
-        }
+            // for (int i = 0; i < size; i++) {
+            //     for (int j = i; j > 0; j--) {
+            //         if (roster[j].compareTo(roster[j-1]) < 0) {
+            //             Student temp = new Student();
+            //             temp = roster[j-1];
+            //             roster[j-1] = roster[j];
+            //             roster[j] = temp;
+            //         }
+            //     }
+            // }
         // print the whole roster
         for (int i = 0; i < size; i ++) {
             System.out.println(roster[i]);

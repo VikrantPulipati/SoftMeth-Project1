@@ -1,5 +1,6 @@
 import java.util.Scanner;
 public class RosterManager {
+
     public void add(Roster roster, Scanner stringScanner) {
         Profile newProfile = new Profile();
         Student newStudent = new Student();
@@ -19,29 +20,28 @@ public class RosterManager {
         Roster roster = new Roster();
         System.out.println("Roster Manager running...");
         Scanner stringScanner = new Scanner(System.in);
-        String command = stringScanner.next();
+        String input = stringScanner.next();
 
-        while (command.equals("Q") != true) {
-            if (command.equals("A") == true) {
+        while (input.charAt(0) != 'Q') {
+            if (input.equals("A")) {
                 add(roster, stringScanner);
-            } else if (command.equals("R") == true) {
+            } else if (input.equals("R") == true) {
 
-            } else if (command.equals("P")) {
+            } else if (input.equals("P")) {
 
-            } else if (command.equals("PS")) {
+            } else if (input.equals("PS")) {
 
-            } else if (command.equals("PC")) {
+            } else if (input.equals("PC")) {
 
-            } else if (command.equals("L")) {
+            } else if (input.equals("L")) {
 
-            } else if (command.equals("C")) {
+            } else if (input.equals("C")) {
 
             } else {
                 System.out.println("You fucked up");
                 break;
             }
-            command = stringScanner.next();
+            System.out.println("Roster Manager terminated.");
         }
-        System.out.println("Roster Manager terminated.");
     }
 }

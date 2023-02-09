@@ -23,7 +23,31 @@ public class Profile implements Comparable<Profile> {
     }
     @Override
     public int compareTo(Profile profile) {
-        return 0;
+        if (this.lname.compareTo(profile.lname) > 0) {
+            return 1;
+        }
+        else if (this.lname.compareTo(profile.lname) < 0) {
+            return -1;
+        }
+        else {
+            if (this.fname.compareTo(profile.fname) > 0) {
+                return 1;
+            }
+            else if (this.fname.compareTo(profile.fname) < 0) {
+                return -1;
+            }
+            else {
+                if (this.dob.compareTo(profile.dob) > 0) {
+                    return 1;
+                }
+                else if (this.dob.compareTo(profile.dob) < 0) {
+                    return -1;
+                }
+                else {
+                    return 0;
+                }
+            }
+        }
     }
     @Override
     public String toString() {

@@ -30,5 +30,32 @@ public class Date implements Comparable<Date> {
         return true;
     } // check if a date is a valid calendar date
 
-    public int compareTo(Date date) { return 0; }
+    @Override
+    public int compareTo(Date date) { 
+        if (this.year > date.year) {
+            return 1;
+        }
+        else if (this.year < date.year) {
+            return -1;
+        }
+        else {
+            if (this.month > date.month) {
+                return 1;
+            }
+            else if (this.month < date.month) {
+                return -1;
+            }
+            else {
+                if (this.day > date.day) {
+                    return 1;
+                }
+                else if (this.day < date.day) {
+                    return -1;
+                }
+                else {
+                    return 0;
+                }
+            }
+        }
+    }
 }

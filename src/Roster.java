@@ -1,5 +1,5 @@
 public class Roster {
-    private Student[] roster = new Student[4];
+    private Student[] roster = new Student[10];
     private int size = 0;
 
     public int getSize() {
@@ -46,9 +46,29 @@ public class Roster {
             System.out.print(roster[i].getProfile().getDOB().getMonth() + "/");
             System.out.print(roster[i].getProfile().getDOB().getDay() + "/");
             System.out.print(roster[i].getProfile().getDOB().getYear() + " ");
-            System.out.print(roster[i].getMajor() + " ");
-            System.out.print(roster[i].getCredits());
-            // print statement for class (fresh, soph, jun, sen)
+            // Printing out major
+            if (roster[i].getMajor() == Major.CS) {
+                System.out.print("(01:198 CS SAS) ");
+            } else if (roster[i].getMajor() == Major.MATH) {
+                System.out.print("(01:640 MATH SAS) ");
+            } else if (roster[i].getMajor() == Major.EE) {
+                System.out.print("(14:332 EE SOE) ");
+            } else if (roster[i].getMajor() == Major.ITI) {
+                System.out.print("(04:547 ITI SC&I) ");
+            } else if (roster[i].getMajor() == Major.BAIT) {
+                System.out.print("(33:136 BAIT RBS) ");
+            } 
+            System.out.print("credits completed: " + roster[i].getCredits() + " ");
+            // number of credits determines class
+            if (roster[i].getCredits() < 30) {
+                System.out.print("(Freshman)");
+            } else if (roster[i].getCredits() < 60) {
+                System.out.print("(Sophomore)");
+            } else if (roster[i].getCredits() < 90) {
+                System.out.print("(Junior)");
+            } else {
+                System.out.print("(Senior)");
+            }
             System.out.println();
         }
     } // print roster sorted by profiles

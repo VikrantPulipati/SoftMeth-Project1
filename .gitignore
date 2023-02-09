@@ -5,6 +5,7 @@ out/
 
 *.iml
 *.class
+Makefile
 
 ### Eclipse ###
 .apt_generated

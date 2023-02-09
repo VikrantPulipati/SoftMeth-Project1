@@ -63,25 +63,21 @@ public class Roster {
             }
         }
     }
-    public void print() {
+    public void print() { // print roster sorted by profiles
+        if (size <= 0) {
+            System.out.println("Student roster is empty!");
+            return;
+        }
         sortByProfile();
-        // sorts by profile
-            // for (int i = 0; i < size; i++) {
-            //     for (int j = i; j > 0; j--) {
-            //         if (roster[j].compareTo(roster[j-1]) < 0) {
-            //             Student temp = new Student();
-            //             temp = roster[j-1];
-            //             roster[j-1] = roster[j];
-            //             roster[j] = temp;
-            //         }
-            //     }
-            // }
-        // print the whole roster
         for (int i = 0; i < size; i ++) {
             System.out.println(roster[i]);
         }
-    } // print roster sorted by profiles
+    }
     public void printBySchoolMajor() {
+        if (size <= 0) {
+            System.out.println("Student roster is empty!");
+            return;
+        }
         for (int i = 0; i < size; i++) {
             for (int j = i; j > 0; j--) {
                 if (roster[j].getMajor().compareTo(roster[j-1].getMajor()) < 0) {
@@ -97,6 +93,10 @@ public class Roster {
         }
     } // print roster sorted by school major
     public void printByStanding() {
+        if (size <= 0) {
+            System.out.println("Student roster is empty!");
+            return;
+        }
         for (int i = 0; i < size; i++) {
             for (int j = i; j > 0; j--) {
                 if (roster[j].getStanding().compareTo(roster[j-1].getStanding()) < 0) {

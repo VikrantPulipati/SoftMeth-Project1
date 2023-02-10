@@ -37,6 +37,10 @@ public class Roster {
         return true;
     } // add student to end of array
     public boolean remove(Student student) {
+        int index = find(student);
+        roster[index] = roster[size-1];
+        roster[size-1] = null;
+        size--;
         return true;
     } // maintain the order after remove
     public boolean contains(Student student) {

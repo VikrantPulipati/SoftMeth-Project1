@@ -1,6 +1,6 @@
 import java.util.Scanner;
 public class RosterManager {
-    public static boolean validInput(Roster roster, Student newStudent, Profile newProfile, Date newDate) {
+    public static boolean addValidInput(Roster roster, Student newStudent, Profile newProfile, Date newDate) {
         // check if student is already in the roster
         if (roster.contains(newStudent)) {
             System.out.print(newStudent.getProfile());
@@ -49,9 +49,6 @@ public class RosterManager {
         }
         newStudentDOB.setYear(newStudentYear);
         // Student passed all checks - displaying success message.
-        System.out.print(newStudent.getProfile());
-        System.out.print(" added to the roster.");
-        System.out.println();
         return true;
     }
     public void add(Roster roster, String[] inputs) {
@@ -76,12 +73,29 @@ public class RosterManager {
         // put these few lines of code in the inValid() method
         newStudent.setMajor(inputs[4]);
         // SET CREDITS
+        // I don't know how to check if the credits are numeric or not.
         newStudent.setCredits(Integer.parseInt(inputs[5]));
         // SET PROFILE
         newStudent.setProfile(newProfile);
         // CHECK IF INPUT IS VALID
-        if(validInput(roster, newStudent, newProfile, newDate)) {
+        if(addValidInput(roster, newStudent, newProfile, newDate)) {
             roster.add(newStudent); 
+            System.out.print(newProfile + " added to the roster.");
+            System.out.println();
+        }
+    }
+    public void remove(Roster roster, String[] inputs) {
+        // make a copy of the student in question, search for the student, remove the student.
+        Profile newProfile = new Profile();
+        Student newStudent = new Student();
+        // SET F,L NAME, DOB
+        newProfile.setFname(inputs[1]);
+        newProfile.setLname(inputs[2]);
+        Date newDate = new Date(inputs[3]);
+        newProfile.setDOB(newDate);
+        newStudent.setProfile(newProfile);
+        if (roster.remove(newStudent)) {
+            System.out.print(newProfile + " removed from the roster.");
         }
     }
     public void changeMajor(Roster roster, String[] inputs) {
@@ -156,12 +170,9 @@ public class RosterManager {
             if (opCode.equals("Q")) {
                 break;
             } else if (opCode.equals("A")) {
-                // Error conditions:
-
-                // add method:
                 add(roster, inputs);
             } else if (opCode.equals("R")) {
-
+                remove(roster, inputs);
             } else if (opCode.equals("P")) {
                 roster.print();
             } else if (opCode.equals("PS")) {

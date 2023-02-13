@@ -1,25 +1,31 @@
 public class Roster {
+
+    public static final int NOT_IN_ROSTER = -1;
+
     private Student[] roster = new Student[4];
     private int size = 0;
 
     public int getSize() {
         return this.size;
     }
+
     public Student[] getRoster() {
         return this.roster;
     }
+
     public void setSize(int size) {
         this.size = size;
     }
+
     private int find(Student student) {
         for (int i = 0; i < size; i++) {
-            if (student.compareTo(roster[i]) == 0) {
+            if (student.equals(roster[i])) {
                 return i;
             }
         }
-        // must define a constand identifier "NOT_FOUND" for the value -1.
-        return -1;
+        return NOT_IN_ROSTER;
     } // search the given student in roster
+
     private void grow() { // do we have to copy the old array into a new one that's 4 cells bigger? Kind of inefficient though.
         Student[] newRoster = new Student[roster.length + 4];
         for (int i = 0; i < roster.length; i++) {
@@ -28,6 +34,7 @@ public class Roster {
         roster = newRoster;
 
     } // increase the array capacity by 4
+
     public boolean add(Student student) {
         roster[size] = student;
         size++;
@@ -36,6 +43,7 @@ public class Roster {
         }
         return true;
     } // add student to end of array
+
     public boolean remove(Student student) {
         int index = find(student);
         roster[index] = roster[size-1];
@@ -43,76 +51,93 @@ public class Roster {
         size--;
         return true;
     } // maintain the order after remove
-    public boolean contains(Student student) {
-        for (int i = 0; i < size; i++) {
-            if (student.compareTo(roster[i]) == 0) {
+
+    public boolean contains(Student target) {
+        for (Student student : roster) {
+            if (target.equals(student)) {
                 return true;
             }
         }
         return false;
     } // if the student is in roster
+
     public void changeMajor(Student student, Major newMajor) {
-        int index = find(student);
-        roster[index].setMajor(student.getMajor().getMajorName());
+        roster[find(student)].setMajor(newMajor);
     }
-    public void sortByProfile() {
-        for (int i = 0; i < size; i++) {
-            for (int j = i; j > 0; j--) {
-                if (roster[j].compareTo(roster[j-1]) < 0) {
-                    Student temp = new Student();
-                    temp = roster[j-1];
-                    roster[j-1] = roster[j];
-                    roster[j] = temp;
-                }
-            }
+
+    public void printRoster () {
+        for (Student student : roster) {
+            if (student == null) return;
+            System.out.println(student);
         }
     }
-    public void print() { // print roster sorted by profiles
+
+    public void sortByProfile () {
+        for (int i = 0; i < size; i++) {
+            int min_idx = i;
+            for (int j = i+1; j < size; j++) {
+                if (roster[j].compareTo(roster[min_idx]) < 0) {
+                    min_idx = j;
+                }
+            }
+            Student temp = roster[min_idx];
+            roster[min_idx] = roster[i];
+            roster[i] = temp;
+        }
+    }
+
+    public void print () { // print roster sorted by profiles
         if (size <= 0) {
             System.out.println("Student roster is empty!");
             return;
         }
-        sortByProfile();
-        for (int i = 0; i < size; i ++) {
-            System.out.println(roster[i]);
-        }
+        this.sortByProfile();
+        System.out.println("* Student roster sorted by last name, first name, DOB **");
+        this.printRoster();
+        System.out.println("* end of roster **");
     }
-    public void printBySchoolMajor() {
+
+    public void printBySchoolMajor () {
         if (size <= 0) {
             System.out.println("Student roster is empty!");
             return;
         }
         for (int i = 0; i < size; i++) {
-            for (int j = i; j > 0; j--) {
-                if (roster[j].getMajor().compareTo(roster[j-1].getMajor()) < 0) {
-                    Student temp = new Student();
-                    temp = roster[j-1];
-                    roster[j-1] = roster[j];
-                    roster[j] = temp;
+            int min_idx = i;
+            for (int j = i+1; j < size; j++) {
+                if (roster[j].getMajor().compare(roster[min_idx].getMajor()) < 0) {
+                    min_idx = j;
                 }
             }
+            Student temp = roster[min_idx];
+            roster[min_idx] = roster[i];
+            roster[i] = temp;
         }
-        for (int i = 0; i < size; i ++) {
-            System.out.println(roster[i]);
-        }
+
+        System.out.println("* Student roster sorted by school, major **");
+        this.printRoster();
+        System.out.println("* end of roster **");
     } // print roster sorted by school major
-    public void printByStanding() {
+
+    public void printByStanding () {
         if (size <= 0) {
             System.out.println("Student roster is empty!");
             return;
         }
         for (int i = 0; i < size; i++) {
-            for (int j = i; j > 0; j--) {
-                if (roster[j].getStanding().compareTo(roster[j-1].getStanding()) < 0) {
-                    Student temp = new Student();
-                    temp = roster[j-1];
-                    roster[j-1] = roster[j];
-                    roster[j] = temp;
+            int min_idx = i;
+            for (int j = i+1; j < size; j++) {
+                if (roster[j].getStanding().compareTo(roster[min_idx].getStanding()) < 0) {
+                    min_idx = j;
                 }
             }
+            Student temp = roster[min_idx];
+            roster[min_idx] = roster[i];
+            roster[i] = temp;
         }
-        for (int i = 0; i < size; i ++) {
-            System.out.println(roster[i]);
-        }
+
+        System.out.println("* Student roster sorted by standing **");
+        this.printRoster();
+        System.out.println("* end of roster **");
     } // print roster sorted by standing
 }

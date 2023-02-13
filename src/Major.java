@@ -1,38 +1,51 @@
 public enum Major {
-    BAIT("BAIT"),
-    CS("CS"),
-    MATH("MATH"),
-    ITI("ITI"),
-    EE("EE");
+    BAIT("BAIT", "33:136", "RBS"),
+    CS("CS", "01:198", "SAS"),
+    MATH("MATH", "01:640", "SAS"),
+    ITI("ITI", "04:547", "SC&I"),
+    EE("EE", "14:332", "SOE");
 
-    private String majorName;
+    private final String majorName;
+    private final String majorCode;
+    private final String school;
 
-    Major (String name) {
-        majorName = name;
+    Major (String name, String code, String school) {
+        this.majorName = name;
+        this.majorCode = code;
+        this.school = school;
     }
+
+
 
     public String getMajorName () {
         return this.majorName;
     }
 
+    public String getMajorCode() {
+        return majorCode;
+    }
+
+    public String getSchool() {
+        return school;
+    }
+
     public static Major getMajorFromString (String name) {
         name = name.toUpperCase();
-        if (name.equals(CS.getMajorName())) {
-            return CS;
-        }
-        else if (name.equals(MATH.getMajorName())) {
-            return MATH;
-        }
-        else if (name.equals(EE.getMajorName())) {
-            return EE;
-        }
-        else if (name.equals(ITI.getMajorName())) {
-            return ITI;
-        }
-        else if (name.equals(BAIT.getMajorName())) {
-            return BAIT;
-        } else {
-            return null;
-        }
+        return switch (name) {
+            case "CS" -> CS;
+            case "MATH" -> MATH;
+            case "EE" -> EE;
+            case "ITI" -> ITI;
+            case "BAIT" -> BAIT;
+            default -> null;
+        };
+    }
+
+    public int compare (Major other) {
+        if (this.school.compareTo(other.getSchool()) < 0) return -1;
+        if (this.school.compareTo(other.getSchool()) > 0) return 1;
+
+        return Integer.compare(this.majorName.compareTo(other.getMajorName()), 0);
+
     }
 }

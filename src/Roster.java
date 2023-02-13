@@ -1,6 +1,6 @@
 public class Roster {
 
-    public static final int NOT_IN_ROSTER = -1;
+    public static final int NOT_FOUND = -1;
 
     private Student[] roster = new Student[4];
     private int size = 0;
@@ -15,7 +15,7 @@ public class Roster {
                 return i;
             }
         }
-        return NOT_IN_ROSTER;
+        return NOT_FOUND;
     } // search the given student in roster
 
     private void grow() { // do we have to copy the old array into a new one that's 4 cells bigger? Kind of inefficient though.
@@ -38,8 +38,11 @@ public class Roster {
 
     public boolean remove(Student student) {
         int index = find(student);
-        roster[index] = roster[size-1];
-        roster[size-1] = null;
+        roster[index] = null;
+        for (int i = index; i < size-1; i++) {
+            roster[i] = roster[i+1];
+            roster[i+1] = null;
+        }
         size--;
         return true;
     } // maintain the order after remove

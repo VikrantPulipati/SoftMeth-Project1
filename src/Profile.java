@@ -2,7 +2,7 @@ public class Profile implements Comparable<Profile> {
 
     private final String fname;
     private final String lname;
-    private final Date dob; // use the Date class described in (f)
+    private final Date dob;
 
     public Profile (String fname, String lname, Date dob) {
         this.fname = fname;

@@ -2,6 +2,14 @@ import java.util.StringTokenizer;
 import java.util.Calendar;
 public class Date implements Comparable<Date> {
 
+    public static final int MONTH_LENGTH_LONG = 31;
+    public static final int MONTH_LENGTH_SHORT = 30;
+    public static final int FEBRUARY_LENGTH_NORMAL = 28;
+    public static final int FEBRUARY_LENGTH_LEAP = 29;
+    public static final int QUADRENNIAL = 4;
+    public static final int CENTENNIAL = 100;
+    public static final int QUATERCENTENNIAL = 400;
+
     private int year;
     private final int month;
     private final int day;
@@ -40,14 +48,11 @@ public class Date implements Comparable<Date> {
         if (month < 1 || month > 12) return false;
         if (day < 1) return false;
 
-        int MONTH_LENGTH_LONG = 31;
-        int MONTH_LENGTH_SHORT = 30;
-
         switch (month) {
             case 1, 3, 5, 7, 8, 10, 12 -> { return day <= MONTH_LENGTH_LONG; }
             case 2 -> {
-                if (day > 29) return false;
-                return this.isLeapYear() || day <= 28;
+                if (day > FEBRUARY_LENGTH_LEAP) return false;
+                return this.isLeapYear() || day <= FEBRUARY_LENGTH_NORMAL;
             }
             case 4, 6, 9, 11 -> { return day <= MONTH_LENGTH_SHORT; }
             default -> { return false; }
@@ -55,9 +60,9 @@ public class Date implements Comparable<Date> {
     }
 
     public boolean isLeapYear () {
-        if (this.year%4 != 0) return false;
-        if (this.year%100 != 0) return true;
-        return this.year % 400 == 0;
+        if (this.year%QUADRENNIAL != 0) return false;
+        if (this.year%CENTENNIAL != 0) return true;
+        return this.year % QUATERCENTENNIAL == 0;
     }
 
     @Override
@@ -83,5 +88,42 @@ public class Date implements Comparable<Date> {
 
         return Integer.compare(this.day, date.day);
 
+    }
+
+    public static void main (String[] args) {
+        final String PASSED = "PASSED";
+        final String FAILED = "FAILED";
+
+        System.out.println("Test Case 1 - 12/31/2002:");
+        Date testDate = new Date("12/31/2002");
+        System.out.println((testDate.isValid()? PASSED: FAILED) + "\n");
+
+        System.out.println("Test Case 2 - 2/29/2004:");
+        testDate = new Date("2/29/2004");
+        System.out.println((testDate.isValid()? PASSED: FAILED) + "\n");
+
+        System.out.println("Test Case 3 - 2/29/2000:");
+        testDate = new Date("2/29/2000");
+        System.out.println((testDate.isValid()? PASSED: FAILED) + "\n");
+
+        System.out.println("Test Case 4 - 2/29/2003:");
+        testDate = new Date("2/29/2003");
+        System.out.println((testDate.isValid()? FAILED: PASSED) + "\n");
+
+        System.out.println("Test Case 5 - 4/31/2003:");
+        testDate = new Date("4/31/2003");
+        System.out.println((testDate.isValid()? FAILED: PASSED) + "\n");
+
+        System.out.println("Test Case 6 - 13/31/2003:");
+        testDate = new Date("13/31/2003");
+        System.out.println((testDate.isValid()? FAILED: PASSED) + "\n");
+
+        System.out.println("Test Case 7 - 3/32/2003:");
+        testDate = new Date("3/32/2003");
+        System.out.println((testDate.isValid()? FAILED: PASSED) + "\n");
+
+        System.out.println("Test Case 8 - -1/31/2003:");
+        testDate = new Date("-1/31/2003");
+        System.out.println((testDate.isValid()? FAILED: PASSED) + "\n");
     }
 }

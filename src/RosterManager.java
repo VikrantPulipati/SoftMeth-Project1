@@ -143,8 +143,8 @@ public class RosterManager {
         label: while (true) {
             String[] inputs = stringScanner.nextLine().split(" +");
             String opCode = inputs[0];
-
             switch (opCode) {
+                case "" -> {}
                 case "Q" -> { break label; }
                 case "A" -> add(roster, inputs);
                 case "R" -> remove(roster, inputs);

@@ -5,16 +5,8 @@ public class Roster {
     private Student[] roster = new Student[4];
     private int size = 0;
 
-    public int getSize() {
-        return this.size;
-    }
-
     public Student[] getRoster() {
         return this.roster;
-    }
-
-    public void setSize(int size) {
-        this.size = size;
     }
 
     private int find(Student student) {

@@ -1,8 +1,8 @@
 public class Profile implements Comparable<Profile> {
 
-    private String fname;
-    private String lname;
-    private Date dob; // use the Date class described in (f)
+    private final String fname;
+    private final String lname;
+    private final Date dob; // use the Date class described in (f)
 
     public Profile (String fname, String lname, Date dob) {
         this.fname = fname;
@@ -20,18 +20,6 @@ public class Profile implements Comparable<Profile> {
 
     public Date getDOB() {
         return this.dob;
-    }
-
-    public void setFname(String fname) {
-        this.fname = fname;
-    }
-
-    public void setLname(String lname) {
-        this.lname = lname;
-    }
-
-    public void setDOB(Date dob) {
-        this.dob = dob;
     }
 
     @Override

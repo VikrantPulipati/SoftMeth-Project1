@@ -15,14 +15,8 @@ public enum Major {
         this.school = school;
     }
 
-
-
     public String getMajorName () {
         return this.majorName;
-    }
-
-    public String getMajorCode() {
-        return majorCode;
     }
 
     public String getSchool() {
@@ -44,8 +38,11 @@ public enum Major {
     public int compare (Major other) {
         if (this.school.compareTo(other.getSchool()) < 0) return -1;
         if (this.school.compareTo(other.getSchool()) > 0) return 1;
-
         return Integer.compare(this.majorName.compareTo(other.getMajorName()), 0);
+    }
 
+    @Override
+    public String toString() {
+        return "(" + majorCode + " " + majorName + " " + school + ")";
     }
 }

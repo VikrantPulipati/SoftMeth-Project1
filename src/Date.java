@@ -3,8 +3,8 @@ import java.util.Calendar;
 public class Date implements Comparable<Date> {
 
     private int year;
-    private int month;
-    private int day;
+    private final int month;
+    private final int day;
 
     public Date() {
         Calendar c = Calendar.getInstance();
@@ -34,14 +34,6 @@ public class Date implements Comparable<Date> {
 
     public void setYear(int year) {
         this.year = year;
-    }
-
-    public void setMonth(int month) {
-        this.month = month;
-    }
-
-    public void setDay(int day) {
-        this.day = day;
     }
 
     public boolean isValid() { // check if a date is a valid calendar date

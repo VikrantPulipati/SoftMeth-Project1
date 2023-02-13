@@ -96,6 +96,7 @@ public class RosterManager {
         newStudent.setProfile(newProfile);
         if (roster.remove(newStudent)) {
             System.out.print(newProfile + " removed from the roster.");
+            System.out.println();
         }
     }
     public void changeMajor(Roster roster, String[] inputs) {

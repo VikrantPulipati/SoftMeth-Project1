@@ -1,191 +1,159 @@
 import java.util.Scanner;
 public class RosterManager {
-    public static boolean addValidInput(Roster roster, Student newStudent, Profile newProfile, Date newDate) {
-        // check if student is already in the roster
-        if (roster.contains(newStudent)) {
-            System.out.print(newStudent.getProfile());
-            System.out.print(" is already in the roster.");
-            System.out.println();
-            return false;
-        }
 
-        // check major
-        if (newStudent.getMajor() == null) {
-            return false;
-        }
-        // check credits
-        if (newStudent.getCredits() < 0) {
-            return false;
-        }
-        Date todayDate = new Date();
-        Date newStudentDOB = newStudent.getProfile().getDOB();
-        int newStudentYear = newStudentDOB.getYear();
-
+    public boolean isValidDate (Date date) {
         // checking if date is a valid calendar date
-        if (!(newStudentDOB.isValid())) {
-            System.out.print("DOB invalid: ");
-            System.out.print(newStudentDOB);
-            System.out.print(" not a valid calendar date!");
-            System.out.println();
+        if (!(date.isValid())) {
+            System.out.println("DOB invalid: " + date
+                    + " not a valid calendar date!");
             return false;
         }
         // checking if dob is today or a future date
-        if (newStudentDOB.compareTo(todayDate) >= 0) {
-            System.out.print("DOB invalid: ");
-            System.out.print(newStudentDOB);
-            System.out.print(" is either today or a future date.");
-            System.out.println();
+        if (date.compareTo(new Date()) >= 0) {
+            System.out.println("DOB invalid: " + date
+                    + " is either today or a future date.");
             return false;
         }
         // checking if student is under 16
-        newStudentDOB.setYear(newStudentYear + 16);
-        if (newStudentDOB.compareTo(todayDate) > 0) {
-            newStudentDOB.setYear(newStudentYear);
-            System.out.print("DOB invalid: ");
-            System.out.print(newStudentDOB);
-            System.out.print(" younger than 16 years old.");
-            System.out.println();
+        int yearOfBirth = date.getYear();
+        date.setYear(yearOfBirth + 16);
+        if (date.compareTo(new Date()) > 0) {
+            date.setYear(yearOfBirth);
+            System.out.println("DOB invalid: " + date
+                    + " younger than 16 years old.");
             return false;
         }
-        newStudentDOB.setYear(newStudentYear);
-        // Student passed all checks - displaying success message.
+        date.setYear(yearOfBirth);
         return true;
     }
+
     public void add(Roster roster, String[] inputs) {
-        // CHECK FOR ERROR CONDITIONS:
-                // non-calendar date of birth FINISHED
-                // dob is today or a future date FINISHED
-                // student is less than 16 years old FINISHED
-                // invalid major FINISHED
-                // student is in the roster already FINISHED
-                // negative number of credits completed FINISHED
+        //VALIDATE DATE
+        Date newDate = new Date(inputs[3]);
+        if (!isValidDate(newDate)) return;
 
-        Profile newProfile = new Profile();
-        Student newStudent = new Student();
+        Profile newProfile = new Profile(inputs[1], inputs[2], newDate);
 
-        // SET F,L NAME
-        newProfile.setFname(inputs[1]);
-        newProfile.setLname(inputs[2]);
-        // SET DOB
-        Date newDate = new Date(inputs[3]);
-        newProfile.setDOB(newDate);
-        // SET MAJOR
-        // put these few lines of code in the inValid() method
-        newStudent.setMajor(inputs[4]);
-        // SET CREDITS
-        // I don't know how to check if the credits are numeric or not.
-        newStudent.setCredits(Integer.parseInt(inputs[5]));
-        // SET PROFILE
-        newStudent.setProfile(newProfile);
-        // CHECK IF INPUT IS VALID
-        if(addValidInput(roster, newStudent, newProfile, newDate)) {
-            roster.add(newStudent); 
-            System.out.print(newProfile + " added to the roster.");
-            System.out.println();
-        }
-    }
-    public void remove(Roster roster, String[] inputs) {
-        // make a copy of the student in question, search for the student, remove the student.
-        Profile newProfile = new Profile();
-        Student newStudent = new Student();
-        // SET F,L NAME, DOB
-        newProfile.setFname(inputs[1]);
-        newProfile.setLname(inputs[2]);
-        Date newDate = new Date(inputs[3]);
-        newProfile.setDOB(newDate);
-        newStudent.setProfile(newProfile);
-        if (roster.remove(newStudent)) {
-            System.out.print(newProfile + " removed from the roster.");
-            System.out.println();
-        }
-    }
-    public void changeMajor(Roster roster, String[] inputs) {
-        // make a copy of the student in question, search for the student, change that student's major.
-        Profile newProfile = new Profile();
-        Student newStudent = new Student();
-        // SET F,L NAME, DOB
-        newProfile.setFname(inputs[1]);
-        newProfile.setLname(inputs[2]);
-        Date newDate = new Date(inputs[3]);
-        newProfile.setDOB(newDate);
-        newStudent.setProfile(newProfile);
-        newStudent.setMajor(inputs[4]);
-        if (newStudent.getMajor() == null) {
+        // VALIDATE MAJOR
+        Major newMajor = Major.getMajorFromString(inputs[4]);
+        if (newMajor == null) {
             System.out.println("Major code invalid: " + inputs[4]);
             return;
         }
-        roster.changeMajor(newStudent, newStudent.getMajor());
-    }
-    public void list(Roster roster, String[] inputs) {
-        if (inputs[1].equals("RBS")) {
-            System.out.println("* Students in RBS *");
-            roster.sortByProfile();
-            Student[] students = roster.getRoster();
-            for (int i = 0; i < roster.getSize(); i++) {
-                if (students[i].getMajor().equals(Major.BAIT)) {
-                    System.out.println(students[i]);
-                }
-            }
-        } else if (inputs[1].equals("SAS")) {
-            System.out.println("* Students in SAS *");
-            roster.sortByProfile();
-            Student[] students = roster.getRoster();
-            for (int i = 0; i < roster.getSize(); i++) {
-                if (students[i].getMajor().equals(Major.CS) || students[i].getMajor().equals(Major.MATH)) {
-                    System.out.println(students[i]);
-                }
-            }
-        } else if (inputs[1].equals("SC&I")) {
-            System.out.println("* Students in SC&I *");
-            roster.sortByProfile();
-            Student[] students = roster.getRoster();
-            for (int i = 0; i < roster.getSize(); i++) {
-                if (students[i].getMajor().equals(Major.ITI)) {
-                    System.out.println(students[i]);
-                }
-            }
-        } else if (inputs[1].equals("SOE")) {
-            System.out.println("* Students in SOE *");
-            roster.sortByProfile();
-            Student[] students = roster.getRoster();
-            for (int i = 0; i < roster.getSize(); i++) {
-                if (students[i].getMajor().equals(Major.EE)) {
-                    System.out.println(students[i]);
-                }
-            }
+        // VALIDATE CREDITS
+        int credits;
+        try {
+            credits = Integer.parseInt(inputs[5]);
+        } catch (NumberFormatException e) {
+            System.out.println("Credits completed invalid: not an integer!");
+            return;
         }
-        else {
-            System.out.println("School doesn't exist: " + inputs[1]);
+        if (credits < 0) {
+            System.out.println("Credits completed invalid: cannot be negative!");
+            return;
+        }
+
+        Student student = new Student(newProfile, newMajor, credits);
+        if (roster.contains(student)) {
+            System.out.println(student.getProfile() + " is already in the roster.");
+            return;
+        }
+        roster.add(student);
+        roster.sortByProfile();
+        System.out.println(newProfile + " added to the roster.");
+    }
+
+    public void remove(Roster roster, String[] inputs) {
+        // make a copy of the student in question, search for the student, remove the student.
+        Profile newProfile = new Profile(inputs[1], inputs[2], new Date(inputs[3]));
+        Student newStudent = new Student(newProfile);
+
+        if (!roster.contains(newStudent)) {
+            System.out.println(newProfile + " is not in the roster.");
+            return;
+        }
+        if (roster.remove(newStudent)) {
+            System.out.println(newProfile + " removed from the roster.");
         }
     }
+
+    public void changeMajor(Roster roster, String[] inputs) {
+        // make a copy of the student in question, search for the student, change that student's major.
+        Profile newProfile = new Profile(inputs[1], inputs[2], new Date(inputs[3]));
+        Student newStudent = new Student(newProfile);
+
+        if (!roster.contains(newStudent)) {
+            System.out.println(newProfile + " is not in the roster.");
+            return;
+        }
+
+        Major newMajor = Major.getMajorFromString(inputs[4]);
+        if (newMajor == null) {
+            System.out.println("Major code invalid: " + inputs[4]);
+            return;
+        }
+        roster.changeMajor(newStudent, newMajor);
+        System.out.println(newProfile + " major changed to " + newMajor.getMajorName());
+    }
+
+    public void list(Roster roster, String school) {
+        roster.sortByProfile();
+        switch (school.toUpperCase()) {
+            case "RBS" -> {
+                System.out.println("* Students in " + school + " *");
+                for (Student student : roster.getRoster()) {
+                    if (student == null) break;
+                    if (student.getMajor().getSchool().equals("RBS")) System.out.println(student);
+                }
+                System.out.println("* end of list **");
+            }
+            case "SAS" -> {
+                System.out.println("* Students in " + school + " *");
+                for (Student student : roster.getRoster()) {
+                    if (student == null) break;
+                    if (student.getMajor().getSchool().equals("SAS")) System.out.println(student);
+                }
+                System.out.println("* end of list **");
+            }
+            case "SC&I" -> {
+                System.out.println("* Students in " + school + " *");
+                for (Student student : roster.getRoster()) {
+                    if (student == null) break;
+                    if (student.getMajor().getSchool().equals("SC&I")) System.out.println(student);
+                }
+                System.out.println("* end of list **");
+            }
+            case "SOE" -> {
+                System.out.println("* Students in " + school + " *");
+                for (Student student : roster.getRoster()) {
+                    if (student == null) break;
+                    if (student.getMajor().getSchool().equals("SOE")) System.out.println(student);
+                }
+                System.out.println("* end of list **");
+            }
+            default -> System.out.println("School doesn't exist: " + school);
+        }
+    }
+
     public void run() {
         Roster roster = new Roster();
         System.out.println("Roster Manager running...");
-        
-        Scanner stringScanner = new Scanner(System.in);
-        while (true) {
-            String input = stringScanner.nextLine();
-            String[] inputs = input.split("\s+");
-            String opCode = inputs[0];
 
-            if (opCode.equals("Q")) {
-                break;
-            } else if (opCode.equals("A")) {
-                add(roster, inputs);
-            } else if (opCode.equals("R")) {
-                remove(roster, inputs);
-            } else if (opCode.equals("P")) {
-                roster.print();
-            } else if (opCode.equals("PS")) {
-                roster.printByStanding();
-            } else if (opCode.equals("PC")) {
-                roster.printBySchoolMajor();
-            } else if (opCode.equals("L")) {
-                list(roster, inputs);
-            } else if (opCode.equals("C")) {
-                changeMajor(roster, inputs);
-            } else {
-                System.out.println(opCode + " is an invalid command!");
+        Scanner stringScanner = new Scanner(System.in);
+        label: while (true) {
+            String[] inputs = stringScanner.nextLine().split(" +");
+            String opCode = inputs[0];
+            switch (opCode) {
+                case "" -> {}
+                case "Q" -> { break label; }
+                case "A" -> add(roster, inputs);
+                case "R" -> remove(roster, inputs);
+                case "P" -> roster.print();
+                case "PS" -> roster.printByStanding();
+                case "PC" -> roster.printBySchoolMajor();
+                case "L" -> list(roster, inputs[1]);
+                case "C" -> changeMajor(roster, inputs);
+                default -> System.out.println(opCode + " is an invalid command!");
             }
         }
         stringScanner.close();

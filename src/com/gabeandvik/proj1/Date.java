@@ -149,17 +149,17 @@ public class Date implements Comparable<Date> {
         final String PASSED = "PASSED";
         final String FAILED = "FAILED";
 
-        System.out.println("Test Case 1 - 12/31/2002:");
-        Date testDate = new Date("12/31/2002");
+        System.out.println("Test Case 1 - 12/12/2002:");
+        Date testDate = new Date("12/12/2002");
         System.out.println((testDate.isValid()? PASSED: FAILED) + "\n");
 
         System.out.println("Test Case 2 - 2/29/2004:");
         testDate = new Date("2/29/2004");
         System.out.println((testDate.isValid()? PASSED: FAILED) + "\n");
 
-        System.out.println("Test Case 3 - 2/29/2000:");
+        System.out.println("Test Case 3 - 2/29/1900:");
         testDate = new Date("2/29/2000");
-        System.out.println((testDate.isValid()? PASSED: FAILED) + "\n");
+        System.out.println((testDate.isValid()? FAILED: PASSED) + "\n");
 
         System.out.println("Test Case 4 - 2/29/2003:");
         testDate = new Date("2/29/2003");

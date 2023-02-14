@@ -50,7 +50,7 @@ public class Profile implements Comparable<Profile> {
     /**
      * Compares two Profiles by Last Name, First Name and Date of Birth.
      * @param profile the other Profile to be compared.
-     * @return -1 if this < other, 0 if this == other, and 1  if this > other.
+     * @return -1 if this is less than other, 0 if this equals other, and 1  if this is greater than other.
      */
     @Override
     public int compareTo(Profile profile) {

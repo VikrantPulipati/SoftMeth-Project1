@@ -66,7 +66,7 @@ public enum Major {
      * A method which compares two Majors according to school name and major name.
      * Compares lexically in the following order: school name, major name.
      * @param other the other Major being compared.
-     * @return -1 if this < other, 0 if this == other, 1 if this > other.
+     * @return -1 if this is less than other, 0 if this equals other, 1 if this is greater than other.
      */
     public int compare (Major other) {
         if (this.school.compareTo(other.getSchool()) < 0) return -1;

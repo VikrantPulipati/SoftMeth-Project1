@@ -80,7 +80,7 @@ public class Student implements Comparable<Student> {
     /**
      * Compares two students by Last Name, First Name and Date of Birth.
      * @param student the other Student to be compared.
-     * @return -1 if this < other, 0 if this == other, 1 if this > other.
+     * @return -1 if this is less than other, 0 if this equals other, 1 if this is greather than other.
      */
     @Override
     public int compareTo(Student student) {

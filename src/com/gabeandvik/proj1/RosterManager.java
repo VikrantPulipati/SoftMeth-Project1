@@ -1,3 +1,5 @@
+package com.gabeandvik.proj1;
+
 import java.util.Scanner;
 
 /**

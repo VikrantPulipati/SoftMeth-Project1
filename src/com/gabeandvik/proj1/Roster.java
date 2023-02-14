@@ -1,3 +1,5 @@
+package com.gabeandvik.proj1;
+
 /**
  * The Roster class contains an array of Students (simulating a roster) and Student array operations.
  * @author Vikrant Pulipati, Gabe Ruszala

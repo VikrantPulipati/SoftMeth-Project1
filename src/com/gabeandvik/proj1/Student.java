@@ -1,3 +1,5 @@
+package com.gabeandvik.proj1;
+
 /**
  * This class holds biographical and academic data for every student in the Roster.
  * @author Vikrant Pulipati, Gabe Ruszala

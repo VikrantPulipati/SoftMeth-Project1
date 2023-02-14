@@ -1,3 +1,5 @@
+package com.gabeandvik.proj1;
+
 /**
  * The Major enum contains a list of possible majors.
  * Includes the name of the major, the major code and the school with which the major is associated.

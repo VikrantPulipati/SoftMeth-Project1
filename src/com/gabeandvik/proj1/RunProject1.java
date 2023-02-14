@@ -1,3 +1,5 @@
+package com.gabeandvik.proj1;
+
 /**
  * A runner class which instantiates and runs a RosterManager.
  * @author Vikrant Pulipati, Gabe Ruszala

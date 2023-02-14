@@ -1,3 +1,5 @@
+package com.gabeandvik.proj1;
+
 /**
  * This class holds biographical information associated with each Student.
  * Contains first name, last name and date of birth.

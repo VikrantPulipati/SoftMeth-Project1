@@ -1,11 +1,11 @@
 import java.util.Scanner;
-public class RosterManager {
+
 /**
  * The RosterManager class acts as the interface between user and program.
  * RosterManager takes in user input, and performs operations on the student roster accordingly.
  * @author Vikrant Pulipati, Gabe Ruszala
  */
-
+public class RosterManager {
     /**
      * Takes in the user's input date and checks if it is a valid date for the roster.
      * @param date the date which the user inputs.
@@ -67,7 +67,7 @@ public class RosterManager {
             System.out.println("Credits completed invalid: cannot be negative!");
             return;
         }
-        // CREATE NEW STUDENT.
+        // CREATE NEW STUDENT
         Student student = new Student(newProfile, newMajor, credits);
         if (roster.contains(student)) {
             System.out.println(student.getProfile() + " is already in the roster.");
@@ -78,6 +78,11 @@ public class RosterManager {
         System.out.println(newProfile + " added to the roster.");
     }
 
+    /**
+     * Remove a student from the roster.
+     * @param roster the Student roster.
+     * @param inputs String array containing all user input on the student to be removed.
+     */
     public void remove(Roster roster, String[] inputs) {
         // make a copy of the student in question, search for the student, remove the student.
         Profile newProfile = new Profile(inputs[1], inputs[2], new Date(inputs[3]));
@@ -92,6 +97,11 @@ public class RosterManager {
         }
     }
 
+    /**
+     * Change a student's major.
+     * @param roster the Student roster.
+     * @param inputs String array containing all user input on the student who's major will be changed.
+     */
     public void changeMajor(Roster roster, String[] inputs) {
         // make a copy of the student in question, search for the student, change that student's major.
         Profile newProfile = new Profile(inputs[1], inputs[2], new Date(inputs[3]));
@@ -111,6 +121,11 @@ public class RosterManager {
         System.out.println(newProfile + " major changed to " + newMajor.getMajorName());
     }
 
+    /**
+     * List all of the students in a specified school.
+     * @param roster the Student roster.
+     * @param school the school you would like to list.
+     */
     public void list(Roster roster, String school) {
         roster.sortByProfile();
         switch (school.toUpperCase()) {
@@ -150,6 +165,9 @@ public class RosterManager {
         }
     }
 
+    /**
+     * Take in user input and run the program!
+     */
     public void run() {
         Roster roster = new Roster();
         System.out.println("Roster Manager running...");

@@ -1,6 +1,16 @@
 import java.util.Scanner;
 public class RosterManager {
+/**
+ * The RosterManager class acts as the interface between user and program.
+ * RosterManager takes in user input, and performs operations on the student roster accordingly.
+ * @author Vikrant Pulipati, Gabe Ruszala
+ */
 
+    /**
+     * Takes in the user's input date and checks if it is a valid date for the roster.
+     * @param date the date which the user inputs.
+     * @return true if the date is a valid calendar date and occurred no less than 16 years ago.
+     */
     public boolean isValidDate (Date date) {
         // checking if date is a valid calendar date
         if (!(date.isValid())) {
@@ -27,6 +37,11 @@ public class RosterManager {
         return true;
     }
 
+    /**
+     * Create and add a new student to the roster.
+     * @param roster the Student roster.
+     * @param inputs String array containing all user input on the new student to be made.
+     */
     public void add(Roster roster, String[] inputs) {
         //VALIDATE DATE
         Date newDate = new Date(inputs[3]);
@@ -52,7 +67,7 @@ public class RosterManager {
             System.out.println("Credits completed invalid: cannot be negative!");
             return;
         }
-
+        // CREATE NEW STUDENT.
         Student student = new Student(newProfile, newMajor, credits);
         if (roster.contains(student)) {
             System.out.println(student.getProfile() + " is already in the roster.");

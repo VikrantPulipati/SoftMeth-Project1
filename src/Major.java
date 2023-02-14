@@ -1,5 +1,5 @@
 /**
- * The Major class contains m getters, setters, compares, and toString.
+ * 
  * @author Vikrant Pulipati, Gabe Ruszala
  */
 public enum Major {

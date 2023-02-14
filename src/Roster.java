@@ -89,8 +89,8 @@ public class Roster {
     } // if the student is in roster
 
     /**
-     * Change a Student object's major.
-     * @param student The student who's major you want to change.
+     * Change a Student's major.
+     * @param student The student who is major you want to change.
      * @param newMajor the new major you wish the student to have.
      */
     public void changeMajor(Student student, Major newMajor) {

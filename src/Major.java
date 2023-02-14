@@ -1,5 +1,6 @@
 /**
- * The Major class contains m getters, setters, compares, and toString.
+ * The Major enum contains a list of possible majors.
+ * Includes the name of the major, the major code and the school with which the major is associated.
  * @author Vikrant Pulipati, Gabe Ruszala
  */
 public enum Major {
@@ -13,20 +14,40 @@ public enum Major {
     private final String majorCode;
     private final String school;
 
+    /**
+     *
+     * @param name the name of the major.
+     * @param code {School Code}:{Major Code}.
+     * @param school the name of the school associated with the major.
+     */
     Major (String name, String code, String school) {
         this.majorName = name;
         this.majorCode = code;
         this.school = school;
     }
 
+    /**
+     * Fetches the name of the major.
+     * @return major name.
+     */
     public String getMajorName () {
         return this.majorName;
     }
 
+    /**
+     * Fetches the name of the school associated with the major.
+     * @return school name.
+     */
     public String getSchool() {
         return school;
     }
 
+    /**
+     * Converts a major's name into its corresponding enum.
+     * For example: getMajorFromString("CS") will return Major.CS.
+     * @param name the name of the major as a String.
+     * @return the Major enum corresponding to the String name.
+     */
     public static Major getMajorFromString (String name) {
         name = name.toUpperCase();
         return switch (name) {
@@ -39,12 +60,22 @@ public enum Major {
         };
     }
 
+    /**
+     * A method which compares two Majors according to school name and major name.
+     * Compares lexically in the following order: school name, major name.
+     * @param other the other Major being compared.
+     * @return -1 if this < other, 0 if this == other, 1 if this > other.
+     */
     public int compare (Major other) {
         if (this.school.compareTo(other.getSchool()) < 0) return -1;
         if (this.school.compareTo(other.getSchool()) > 0) return 1;
         return Integer.compare(this.majorName.compareTo(other.getMajorName()), 0);
     }
 
+    /**
+     * Provides a String summary of the Major.
+     * @return (majorCode majorName schoolName)
+     */
     @Override
     public String toString() {
         return "(" + majorCode + " " + majorName + " " + school + ")";

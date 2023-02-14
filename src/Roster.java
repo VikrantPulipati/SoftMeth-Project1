@@ -165,6 +165,7 @@ public class Roster {
 
     /**
      * Print the roster by standing (standings are in alphabetical order).
+     * Sorted order: Freshmen, Juniors, Seniors, Sophomores.
      */
     public void printByStanding () {
         if (size <= 0) {

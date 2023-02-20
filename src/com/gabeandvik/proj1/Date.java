@@ -10,6 +10,10 @@ import java.util.Calendar;
 
 public class Date implements Comparable<Date> {
 
+    public static final int MAX_MONTH = 12;
+    public static final int MIN_MONTH = 1;
+    public static final int MIN_DAY = 1;
+
     public static final int MONTH_LENGTH_LONG = 31;
     public static final int MONTH_LENGTH_SHORT = 30;
     public static final int FEBRUARY_LENGTH_NORMAL = 28;
@@ -80,16 +84,19 @@ public class Date implements Comparable<Date> {
      * @return true if the given date is a valid calendar date.
      */
     public boolean isValid() {
-        if (month < 1 || month > 12) return false;
-        if (day < 1) return false;
+        if (month < MIN_MONTH || month > MAX_MONTH) return false;
+        if (day < MIN_DAY) return false;
 
-        switch (month) {
-            case 1, 3, 5, 7, 8, 10, 12 -> { return day <= MONTH_LENGTH_LONG; }
-            case 2 -> {
+        switch (month-1) {
+            case Calendar.JANUARY, Calendar.MARCH, Calendar.MAY, Calendar.JULY,
+                    Calendar.AUGUST, Calendar.OCTOBER, Calendar.DECEMBER ->
+                    { return day <= MONTH_LENGTH_LONG; }
+            case Calendar.FEBRUARY -> {
                 if (day > FEBRUARY_LENGTH_LEAP) return false;
                 return this.isLeapYear() || day <= FEBRUARY_LENGTH_NORMAL;
             }
-            case 4, 6, 9, 11 -> { return day <= MONTH_LENGTH_SHORT; }
+            case Calendar.APRIL, Calendar.JUNE,
+                    Calendar.SEPTEMBER, Calendar.NOVEMBER -> { return day <= MONTH_LENGTH_SHORT; }
             default -> { return false; }
         }
     }
